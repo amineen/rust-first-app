@@ -4,14 +4,20 @@ use std::io;
 
 fn main() {
     println!("This is a guessing game!");
-    let secret_number = rand::thread_rng().gen_range(1..=10);
+    let secret_number: u32 = rand::thread_rng().gen_range(1..=10);
     let mut guess: String = String::new();
     loop {
         guess.clear();
-        println!("Please guess a number: ");
+        println!("Please guess a number from 1 to 10 (or enter Q to quit): ");
         io::stdin()
             .read_line(&mut guess)
             .expect("Failed to read line");
+
+        if guess.trim().to_lowercase() == "q" {
+            println!("You quit the game!");
+            break;
+        }
+
         let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
             Err(_) => {
