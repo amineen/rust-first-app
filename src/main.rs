@@ -1,6 +1,11 @@
+use std::io;
 fn main() {
-    let x = 5;
-    let y = 10;
-    let z = x + y;
-    println!("The value of z is: {}", z);
+    let mut guess: String = String::new();
+    println!("Please guess a number.");
+    println!("Enter your guess: ");
+    io::stdin()
+        .read_line(&mut guess)
+        .expect("Failed to read line");
+
+    println!("You guessed: {}", guess);
 }
